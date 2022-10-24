@@ -2,7 +2,7 @@
 title: "Curso-R - Trabalho Final"
 subtitle: "Raspagem de dados e clusterização de canabinoides"
 author: "Eduardo Ben-Hur De Queiroz Gomes"
-date: \today
+date: "23-10-2022"
 output: html_document
 ---
 
@@ -383,7 +383,7 @@ De acordo com a programação, os principais objetivos do curso são: difundir c
 
 ### Fundamentos da política nacional sobre drogas
 
-O que fundamenta a Política Nacional sobre drogas é a [Lei Federal 11.343/2006](http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm), que em seu **§ 1º do art. 3º**, dispõe sobre a criação do Sistema Nacional de Políticas Públicas sobre Drogas - SISNAD, entendido como "**o conjunto ordenado de princípios, regras, critérios e recursoos materiais e humanos que envolvem as políticas, planos, programas, ações e projetos sobre drogas**, incluindo-se nele, por adesão, os Sistemas de Políticas Públics sobre Drogas dos Estados, Distrito Federal e Nunicípios" que tem a finalidade de **articular, organizar e coordenar as atividades relacionadas com a prevenção do uso indevido, a atenção e a reinserção social dde usuários e dependentes de drogas e a repressão da produção não autorizada e do tráfico ilícito de drogas** (art. 3º, caput, incisos I e II, da Lei de Drogas)
+O que fundamenta a Política Nacional sobre drogas é a [Lei Federal 11.343/2006](http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm), que em seu **§ 1º do art. 3º**, dispõe sobre a criação do Sistema Nacional de Políticas Públicas sobre Drogas - SISNAD, entendido como "**o conjunto ordenado de princípios, regras, critérios e recursos materiais e humanos que envolvem as políticas, planos, programas, ações e projetos sobre drogas**, incluindo-se nele, por adesão, os Sistemas de Políticas Públics sobre Drogas dos Estados, Distrito Federal e Nunicípios" que tem a finalidade de **articular, organizar e coordenar as atividades relacionadas com a prevenção do uso indevido, a atenção e a reinserção social dde usuários e dependentes de drogas e a repressão da produção não autorizada e do tráfico ilícito de drogas** (art. 3º, caput, incisos I e II, da Lei de Drogas)
 
 
 ### Fundamentação da análise
@@ -394,7 +394,7 @@ Entendendo essas semelhanças, intenta-se criar grupos nos quais as sementes pre
 
 #### THC
 
-O THC é encontrad0 em todas as partes da planta, mas especialmente nas flores e resina das plantas fêmeas. Já a sua concentração em cada planta depende de vários fatores, tais como o tipo de solo, o clima, a época de colheita e assim por diante.
+O THC é encontrado em todas as partes da planta, mas especialmente nas flores e resina das plantas fêmeas. Já a sua concentração em cada planta depende de vários fatores, tais como o tipo de solo, o clima, a época de colheita e assim por diante.
 
 O THC foi isolado pela primeira vez em 1964 por Raphael Mechoulam, Yechiel Gaoni e Habib Edery, ao extraí-lo a partir do haxixe com éter de petróleo, seguido de repetidas cromatografias.
 
@@ -436,6 +436,7 @@ Apesar de ainda ser um tabu, a discussão sobre o uso da Cannabis medicinal est�
 O primeiro passo, foi gerar uma base selecionando as variáveis e filtrando as sementes que não tinham a mesma estrutura de coleta dos dados. Para isso, o seguinte código foi executado.
 
 ```{r}
+set.seed(123) 
 base <- as.data.frame(tab)
 base_filtrada <- dplyr::filter(base,
                                semente != "alaskan thunder fuck seeds" &
@@ -539,15 +540,14 @@ print(resumo_medio)
 ```
 Com os clusters formados, é possível ter uma ideia do percentual médio de cada canabinoide em cada cluster. 
 
-O cluster 1 por exemplo, possui apenas 1 variedade de semente e isso ocorreu pois é possível que essa semente específica tenha no comportamento conjunto de suas variáveis métricas, valores que são consideravelmente diferentes para a quantidade de clusters que fora considerada nessa análise.
+O cluster 4 por exemplo, possui apenas 1 variedade de semente e isso ocorreu pois é possível que essa semente específica tenha no comportamento conjunto de suas variáveis métricas, valores que são consideravelmente diferentes para a quantidade de clusters que fora considerada nessa análise.
 
 Com esses resultados e pensando na realização de cultivo e a grande variedade de sementes presentes no banco, é possível avaliar cada variedade em cada grupo, já com uma ideia média do percentual de cada canabinoide coletado em cada semente.
 
-Com esses resultados e pensando na realização de cultivo e a grande variedade de sementes presentes no banco, é possível avaliar cada variedade em cada grupo, já com uma ideia média do percentual de cada canabinoide coletado em cada semente.
 
-Para acessar os dados desse relatório, acesse o [diretório desse projeto](https://github.com/DuhBenhur/cannabis) no **Gihub*. Lá na pasta outputs, existe um arquivo .csv com os resultado dos clusters e de quais sementes fazem parte deles.
+Para acessar os dados desse relatório, acesse o [diretório desse projeto](https://github.com/DuhBenhur/cannabis) no **Github**. Lá na pasta outputs, existe um arquivo .csv com os resultado dos clusters e de quais sementes fazem parte deles.
 
-Espero que tenha ficado legal para você que lê. Foi muito divertido fazer esse trabalho :-) 
+Espero que tenha ficado legal para você que lê. Foi muito divertido fazer esse trabalho :-) <br/>
 Todo feedback é bem vindo!
 
 <br/>
@@ -555,3 +555,7 @@ Todo feedback é bem vindo!
 <br/>
 
 Até mais!!
+<br/>
+<br/>
+Eduardo Ben- Hur - [Linkedin](https://www.linkedin.com/in/eduardobenhur/)
+
