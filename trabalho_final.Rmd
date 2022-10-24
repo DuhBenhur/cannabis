@@ -1,6 +1,6 @@
 ---
 title: "Curso-R - Trabalho Final"
-subtitle: "Raspagem de dados e clusterização de canabinóides"
+subtitle: "Raspagem de dados e clusterização de canabinoides"
 author: "Eduardo Ben-Hur De Queiroz Gomes"
 date: \today
 output: html_document
@@ -518,7 +518,7 @@ fviz_nbclust(feminized_seeds.padronizado, kmeans, method = "wss") +
   geom_vline(xintercept = 5, linetype = 6)
 ```
 
-Foi tomada a decisão de trabalhar com 5 clusters de sementes e uma forma de avaliar as características desse, um dataset de resumo foi gerado, agrupando as observações e calculando as médias de cada grupo.
+Foi tomada a decisão de trabalhar com 5 clusters de sementes e uma forma de avaliar as características desses clusters é gerando um dataset de resumo, agrupando as observações e calculando as médias de cada grupo.
 
 ```{r}
 fit <- data.frame(feminized_seeds.k5$cluster)
