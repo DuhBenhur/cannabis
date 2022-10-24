@@ -56,7 +56,7 @@ Os canabinoides são compostos naturais da planta. Os canabinoides mais famosos 
 
 Para saber um pouco mais sobre o assunto, recomendo uma breve visita a página da wikipedia sobre [Canabidiol](https://pt.wikipedia.org/wiki/Canabidiol).
 
-Voltando a página de interesse, foram coletadas as informações sobre os principais canabinóides de cada variedade de semente.
+Voltando a página de interesse, foram coletadas as informações sobre os principais canabinoides de cada variedade de semente.
 <br/>
 <br/>
 <br/>
@@ -177,7 +177,7 @@ Para isso, novamente foi necessário realizar uma inspeção de elementos na pá
 <br/>
 <br/>
 
-Com a informação do elemento html, os seguintes códigos foram executados para obtenção dos nomes dos canabinoidese também dos valores de cada um deles.
+Com a informação do elemento html, os seguintes códigos foram executados para obtenção dos nomes dos canabinoides e também dos valores de cada um deles.
 
 ```{r}
 html <- urls |>
@@ -209,7 +209,7 @@ E para os valores.
 valor
 ```
 
-E por fim, uma função para organizar os nomes dos canabinóides com os seus respectivos valores.
+E por fim, uma função para organizar os nomes dos canabinoides com os seus respectivos valores.
 
 ```{r}
 dados_valores <-
