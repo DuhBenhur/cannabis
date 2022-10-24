@@ -13,7 +13,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+Página web disponível [aqui](https://rpubs.com/duhbenhur/960656)
 # Introdução
 
 Neste projeto vou apresentar o trabalho final do curso de "Web scraping" da [Curso-R](www.curso-r.com). A ideia aqui é ter um primeiro contato com rapagem de dados de sites e também, ter uma entrega paralela como trabalho de conclusão do **VIII Curso de Cannabis Medicinal** da [Unifesp](https://sp.unifesp.br/epm/eventos-epm/viii-curso-de-cannabis-medicinal).
