@@ -453,7 +453,7 @@ E com isso temos a seguinte base.
 glimpse(feminized_seeds)
 ```
 
-Em seguida, as colunas receberam o nome de cada planta, pois o algoritmo de clusterização que será utilizado aceita apenas variáveis quantitativas que nesse caso, são os percentuais de cada canabinoide. Além disso, a base passou por um processo de padronização, conhecido como z-scores, para saber mais sobre esse procedimento, leia [aqui](https://datascience.eu/pt/matematica-e-estatistica/o-que-e-um-z-score/)
+Em seguida, as linhas receberam o nome de cada planta, pois o algoritmo de clusterização que será utilizado aceita apenas variáveis quantitativas que nesse caso, são os percentuais de cada canabinoide. Além disso, a base passou por um processo de padronização, conhecido como z-scores, para saber mais sobre esse procedimento, leia [aqui](https://datascience.eu/pt/matematica-e-estatistica/o-que-e-um-z-score/)
 
 ```{r}
 rownames(feminized_seeds) <- feminized_seeds[, 1]
