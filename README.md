@@ -1,19 +1,15 @@
-# cannabis
-Repositório criado para publicação do trabalho final do curso de web scraping da Curso-R e também para futuras análises de dados canabicos
-
-
 ---
 title: "Curso-R - Trabalho Final"
-subtitle: "Raspagem de dados e clusterização de canabinóides"
+subtitle: "Raspagem de dados e clusterização de canabinoides"
 author: "Eduardo Ben-Hur De Queiroz Gomes"
-date: \today
+date: "23-10-2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-Página web disponível [aqui](https://rpubs.com/duhbenhur/960656)
+
 # Introdução
 
 Neste projeto vou apresentar o trabalho final do curso de "Web scraping" da [Curso-R](www.curso-r.com). A ideia aqui é ter um primeiro contato com rapagem de dados de sites e também, ter uma entrega paralela como trabalho de conclusão do **VIII Curso de Cannabis Medicinal** da [Unifesp](https://sp.unifesp.br/epm/eventos-epm/viii-curso-de-cannabis-medicinal).
@@ -92,6 +88,8 @@ pacotes <- c(
   "progressr",
   "purrr"
 )
+
+
 if (sum(as.numeric(!pacotes %in% installed.packages())) != 0) {
   instalador <- pacotes[!pacotes %in% installed.packages()]
   for (i in 1:length(instalador)) {
@@ -102,6 +100,7 @@ if (sum(as.numeric(!pacotes %in% installed.packages())) != 0) {
 } else{
   sapply(pacotes, require, character = T)
 }
+
 ```
 <br/>
 <br/>
@@ -125,6 +124,7 @@ A requisição da url mãe foi realizada e o arquivo html foi salvo localmente a
 
 ```{r}
 u_links <- "https://www.seedbank.com/collections/feminized-seeds/"
+
 r_links <-
   httr::GET(u_links,
             httr::write_disk("output/strains/feminized.html", overwrite = TRUE))
@@ -146,7 +146,9 @@ Atráves da inspeção, foi possível localizar um elemento html que poderia ser
 links <- r_links |>
   xml2::read_html() |>
   xml2::xml_find_all("//div[@class = 'add-to-cart-button']/a")
+
 urls <- xml2::xml_attr(links, "href")
+
 urls
 ```
 
@@ -180,6 +182,7 @@ Com a informação do elemento html, os seguintes códigos foram executados para
 ```{r}
 html <- urls |>
     purrr::map(read_html)
+
   nome <- html |>
     purrr::map(xml_find_all, "//*[@class='pie_progress__label']") |>
     purrr::map(xml_text) |>
@@ -214,6 +217,7 @@ dados_valores <-
     purrr::map_dfr(tidyr::pivot_wider) |>
     # substitui NAs por zero
     dplyr::mutate(dplyr::across(.fns = tidyr::replace_na, replace = 0))
+
 dados_valores
 ```
 
@@ -247,7 +251,9 @@ n_resultados <- r_links |>
   stringr::str_squish() |>
   stringr::str_extract("[0-9][0-9][0-9]") |>
   as.numeric()
+
 n_pags <- n_resultados %/% 12 + 1
+
 n_resultados
 n_pags
 ```
@@ -321,6 +327,7 @@ baixar_pagina <- function(pag, prog = NULL) {
 Por último, essa função recebeu o vetor já criado e iterou por todas as páginas de interesse.
 
 ```{r}
+
 progressr::with_progress({
   p <- progressr::progressor(n_pags)
   tab <- purrr::map_dfr(vetor_paginas, baixar_pagina, prog = p)
@@ -376,7 +383,7 @@ De acordo com a programação, os principais objetivos do curso são: difundir c
 
 ### Fundamentos da política nacional sobre drogas
 
-O que fundamenta a Política Nacional sobre drogas é a [Lei Federal 11.343/2006](http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm), que em seu **§ 1º do art. 3º**, dispõe sobre a criação do Sistema Nacional de Políticas Públicas sobre Drogas - SISNAD, entendido como "**o conjunto ordenado de princípios, regras, critérios e recursoos materiais e humanos que envolvem as políticas, planos, programas, ações e projetos sobre drogas**, incluindo-se nele, por adesão, os Sistemas de Políticas Públics sobre Drogas dos Estados, Distrito Federal e Nunicípios" que tem a finalidade de **articular, organizar e coordenar as atividades relacionadas com a prevenção do uso indevido, a atenção e a reinserção social dde usuários e dependentes de drogas e a repressão da produção não autorizada e do tráfico ilícito de drogas** (art. 3º, caput, incisos I e II, da Lei de Drogas)
+O que fundamenta a Política Nacional sobre drogas é a [Lei Federal 11.343/2006](http://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm), que em seu **§ 1º do art. 3º**, dispõe sobre a criação do Sistema Nacional de Políticas Públicas sobre Drogas - SISNAD, entendido como "**o conjunto ordenado de princípios, regras, critérios e recursos materiais e humanos que envolvem as políticas, planos, programas, ações e projetos sobre drogas**, incluindo-se nele, por adesão, os Sistemas de Políticas Públics sobre Drogas dos Estados, Distrito Federal e Nunicípios" que tem a finalidade de **articular, organizar e coordenar as atividades relacionadas com a prevenção do uso indevido, a atenção e a reinserção social dde usuários e dependentes de drogas e a repressão da produção não autorizada e do tráfico ilícito de drogas** (art. 3º, caput, incisos I e II, da Lei de Drogas)
 
 
 ### Fundamentação da análise
@@ -387,7 +394,7 @@ Entendendo essas semelhanças, intenta-se criar grupos nos quais as sementes pre
 
 #### THC
 
-O THC é encontrad0 em todas as partes da planta, mas especialmente nas flores e resina das plantas fêmeas. Já a sua concentração em cada planta depende de vários fatores, tais como o tipo de solo, o clima, a época de colheita e assim por diante.
+O THC é encontrado em todas as partes da planta, mas especialmente nas flores e resina das plantas fêmeas. Já a sua concentração em cada planta depende de vários fatores, tais como o tipo de solo, o clima, a época de colheita e assim por diante.
 
 O THC foi isolado pela primeira vez em 1964 por Raphael Mechoulam, Yechiel Gaoni e Habib Edery, ao extraí-lo a partir do haxixe com éter de petróleo, seguido de repetidas cromatografias.
 
@@ -429,10 +436,14 @@ Apesar de ainda ser um tabu, a discussão sobre o uso da Cannabis medicinal est�
 O primeiro passo, foi gerar uma base selecionando as variáveis e filtrando as sementes que não tinham a mesma estrutura de coleta dos dados. Para isso, o seguinte código foi executado.
 
 ```{r}
+set.seed(123) 
 base <- as.data.frame(tab)
 base_filtrada <- dplyr::filter(base,
                                semente != "alaskan thunder fuck seeds" &
                                  semente != "sweet island skunk seeds")
+
+
+
 feminized_seeds <- dplyr::select(base_filtrada, everything(), -link)
 ```
 
@@ -447,6 +458,7 @@ Em seguida, as colunas receberam o nome de cada planta, pois o algoritmo de clus
 ```{r}
 rownames(feminized_seeds) <- feminized_seeds[, 1]
 feminized_seeds <- feminized_seeds[,-1]
+
 feminized_seeds.padronizado <- scale(feminized_seeds)
 ```
 
@@ -454,10 +466,15 @@ Em seguida, o algoritmo [k-means](https://en.wikipedia.org/wiki/K-means_clusteri
 
 ```{r}
 #Cluster não hierarquico
+
+
 feminized_seeds.k2 <-
   kmeans(feminized_seeds.padronizado, centers = 2)
+
 #Visualizar os clusters
+
 fviz_cluster(feminized_seeds.k2, data = feminized_seeds.padronizado, main = "Cluster k2")
+
 ```
 
 Através do gráfico gerado, é possível perceber que existe uma quebra inicial interessante, quando consideramos o comportamento conjunto das variáveis para criar os grupos. 
@@ -466,6 +483,7 @@ Quando utilizamos essa técnica de clusterização não hierarquica, é necessá
 
 ```{r}
 #Criando Clusters
+
 feminized_seeds.k3 <-
   kmeans(feminized_seeds.padronizado, centers = 3)
 feminized_seeds.k4 <-
@@ -474,6 +492,7 @@ feminized_seeds.k5 <-
   kmeans(feminized_seeds.padronizado, centers = 5)
 feminized_seeds.k6 <-
   kmeans(feminized_seeds.padronizado, centers = 6)
+
 tipo_geom <- "points"
 #Criar graficos
 G2 <-
@@ -486,6 +505,8 @@ G5 <-
   fviz_cluster(feminized_seeds.k5, geom = tipo_geom, data = feminized_seeds.padronizado) + ggtitle("k = 5")
 G6 <-
   fviz_cluster(feminized_seeds.k6, geom = tipo_geom, data = feminized_seeds.padronizado) + ggtitle("k = 6")
+
+
 #Imprimir graficos na mesma tela
 grid.arrange(G2, G3, G4, G5, G6, nrow = 2)
 ```
@@ -498,11 +519,13 @@ fviz_nbclust(feminized_seeds.padronizado, kmeans, method = "wss") +
   geom_vline(xintercept = 5, linetype = 6)
 ```
 
-Foi tomada a decisão de trabalhar com 5 clusters de sementes e uma forma de avaliar as características desse, um dataset de resumo foi gerado, agrupando as observações e calculando as médias de cada grupo.
+Foi tomada a decisão de trabalhar com 5 clusters de sementes e uma forma de avaliar as características desses clusters é gerando um dataset de resumo, agrupando as observações e calculando as médias de cada grupo.
 
 ```{r}
 fit <- data.frame(feminized_seeds.k5$cluster)
+
 feminized_seeds_fit <- cbind(base_filtrada, fit)
+
 resumo_medio <- feminized_seeds_fit |>
   group_by(feminized_seeds.k5.cluster) |>
   dplyr::summarise(
@@ -512,19 +535,19 @@ resumo_medio <- feminized_seeds_fit |>
     CBG = mean(CBG),
     CBN = mean(CBN)
   ) 
+
 print(resumo_medio)
 ```
 Com os clusters formados, é possível ter uma ideia do percentual médio de cada canabinoide em cada cluster. 
 
-O cluster 1 por exemplo, possui apenas 1 variedade de semente e isso ocorreu pois é possível que essa semente específica tenha no comportamento conjunto de suas variáveis métricas, valores que são consideravelmente diferentes para a quantidade de clusters que fora considerada nessa análise.
+O cluster 4 por exemplo, possui apenas 1 variedade de semente e isso ocorreu pois é possível que essa semente específica tenha no comportamento conjunto de suas variáveis métricas, valores que são consideravelmente diferentes para a quantidade de clusters que fora considerada nessa análise.
 
 Com esses resultados e pensando na realização de cultivo e a grande variedade de sementes presentes no banco, é possível avaliar cada variedade em cada grupo, já com uma ideia média do percentual de cada canabinoide coletado em cada semente.
 
-Com esses resultados e pensando na realização de cultivo e a grande variedade de sementes presentes no banco, é possível avaliar cada variedade em cada grupo, já com uma ideia média do percentual de cada canabinoide coletado em cada semente.
 
 Para acessar os dados desse relatório, acesse o [diretório desse projeto](https://github.com/DuhBenhur/cannabis) no **Github**. Lá na pasta outputs, existe um arquivo .csv com os resultado dos clusters e de quais sementes fazem parte deles.
 
-Espero que tenha ficado legal para você que lê. Foi muito divertido fazer esse trabalho :-) 
+Espero que tenha ficado legal para você que lê. Foi muito divertido fazer esse trabalho :-) <br/>
 Todo feedback é bem vindo!
 
 <br/>
@@ -532,4 +555,8 @@ Todo feedback é bem vindo!
 <br/>
 
 Até mais!!
+<br/>
+<br/>
+Eduardo Ben- Hur - [Linkedin](https://www.linkedin.com/in/eduardobenhur/)
+
 
