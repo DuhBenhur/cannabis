@@ -522,7 +522,7 @@ Com esses resultados e pensando na realização de cultivo e a grande variedade 
 
 Com esses resultados e pensando na realização de cultivo e a grande variedade de sementes presentes no banco, é possível avaliar cada variedade em cada grupo, já com uma ideia média do percentual de cada canabinoide coletado em cada semente.
 
-Para acessar os dados desse relatório, acesse o [diretório desse projeto](https://github.com/DuhBenhur/cannabis) no **Gihub*. Lá na pasta outputs, existe um arquivo .csv com os resultado dos clusters e de quais sementes fazem parte deles.
+Para acessar os dados desse relatório, acesse o [diretório desse projeto](https://github.com/DuhBenhur/cannabis) no **Github**. Lá na pasta outputs, existe um arquivo .csv com os resultado dos clusters e de quais sementes fazem parte deles.
 
 Espero que tenha ficado legal para você que lê. Foi muito divertido fazer esse trabalho :-) 
 Todo feedback é bem vindo!
@@ -532,3 +532,4 @@ Todo feedback é bem vindo!
 <br/>
 
 Até mais!!
+
