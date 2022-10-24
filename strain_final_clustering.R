@@ -238,16 +238,3 @@ resumo_medio <- feminized_seeds_fit |>
     CBN = mean(CBN)
   ) |>
   ungroup() |> droplevels(.)
-
-
-
-gap_stat <-
-  clusGap(
-    feminized_seeds.padronizado,
-    FUN = kmeans,
-    nstart = 25,
-    K.max = 10,
-    B = 300
-  )
-print(gap_stat, method = "firstmax")
-fviz_gap_stat(gap_stat)
